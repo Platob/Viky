@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ item.name }} - Vickrey Auction</title>
+</head>
+<body>
+    <h1>Auctions for item "{{ item.name }}"</h1>
+
+    <h2>Item Details</h2>
+    <p>Name: {{ item.name }}</p>
+    <p>Reserve Price: ${{ item.price }}</p>
+
+    <h2>Enter Bid</h2>
+    <form action="/item/{{ item.name }}" method="POST">
+        <label for="bid">Bid Owner:</label>
+        <input type="text" name="owner" required>
+        <br>
+        <label for="bid">Bid Value:</label>
+        <input type="number" name="bid" step="0.1" required>
+        <br>
+        <input type="submit" value="Submit Bid">
+    </form>
+
+    <h2>Bids</h2>
+    <a href="/item/{{ item.name }}/reset">Reset Bids</a>
+    <ul>
+        {% for (owner, bids) in item.bids.items() %}
+            <li>Owner: {{ owner }}, Bids: {{ bids }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Winning Bidder</h2>
+    {% if owner %}
+        <p>"{{ owner }}" at bid: {{ bid }}</p>
+    {% endif %}
+</body>
+</html>

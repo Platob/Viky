@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vickrey Auction</title>
+</head>
+<body>
+    <h1>Vickrey Auction</h1>
+
+    <h2>Items on Auction</h2>
+    <ul>
+        {% for item in items %}
+            <li><a href="/item/{{ item.name }}">Link to auction item named: {{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add New Item</h2>
+    <form action="/add_item" method="POST">
+        <label for="item_name">Item Name:</label>
+        <input type="text" name="item_name" required>
+        <br>
+        <label for="reserve_price">Reserve Price:</label>
+        <input type="number" name="reserve_price" step="0.01" required>
+        <br>
+        <input type="submit" value="Add Item">
+    </form>
+</body>
+</html>
