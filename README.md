@@ -23,7 +23,6 @@ Install the required dependencies
 ```bash
 git clone https://github.com/Platob/Viky.git
 cd Viky
-python -m venv venv
 pip install -r requirements.txt
 ```
 
