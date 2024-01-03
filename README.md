@@ -14,10 +14,11 @@ Follow these steps to set up and run the Vickrey Auction Simulator on your local
 ### Install
 
 First, clone this GitHub repository to your local machine using the following command:
+
 Navigate to the project directory
+
 Create a virtual environment (optional but recommended)
 Install the required dependencies
-
 
 ```bash
 git clone https://github.com/Platob/Viky.git
