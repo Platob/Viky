@@ -30,19 +30,15 @@ class Item:
                 yield owner, bid
 
     def winning_bidder(self, exclude_owner: str = None) -> Optional[tuple[str, float]]:
-        max_price = max(
-            (
-                bid for (owner, bid) in self.owner_bids()
-                if bid > self.price and owner != exclude_owner
-            ),
-            default=self.price
-        )
+        winner = None
+        max_price = self.price
 
         for (owner, bid) in self.owner_bids():
-            if bid == max_price:
-                return owner, bid
+            if bid > max_price:
+                winner = (owner, bid)
+                max_price = bid
 
-        return None
+        return winner
 
     def winning_price(self) -> Optional[tuple[str, float]]:
         winner = self.winning_bidder()
