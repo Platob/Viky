@@ -23,17 +23,18 @@ class Item:
         bids.add(price)
         self.bids[owner] = bids
 
-    def owner_bids(self):
+    def owner_bids(self, exclude_owner: str = None):
         # ventilate all bids by owner
         for (owner, bids) in self.bids.items():
-            for bid in bids:
-                yield owner, bid
+            if owner != exclude_owner:
+                for bid in bids:
+                    yield owner, bid
 
     def winning_bidder(self, exclude_owner: str = None) -> Optional[tuple[str, float]]:
         winner = None
         max_price = self.price
 
-        for (owner, bid) in self.owner_bids():
+        for (owner, bid) in self.owner_bids(exclude_owner=exclude_owner):
             if bid > max_price:
                 winner = (owner, bid)
                 max_price = bid
