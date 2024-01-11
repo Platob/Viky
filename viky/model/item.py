@@ -45,6 +45,8 @@ class Item:
         winner = self.winning_bidder()
 
         if winner:
-            return self.winning_bidder(exclude_owner=winner[0])
-
+            # Return the best price with the best bidder name
+            new_winner = self.winning_bidder(exclude_owner=winner[0])
+            if new_winner:
+                return winner[0], new_winner[1]
         return None
